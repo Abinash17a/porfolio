@@ -1,0 +1,20 @@
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  /* Optional: Ensure the main app container spans full width */
+  #__next, .app, main {
+    width: 100%;
+    margin: 0 auto;
+  }
