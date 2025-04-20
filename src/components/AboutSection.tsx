@@ -63,7 +63,7 @@ const EnhancedAboutSection = () => {
 
   // Calculate scroll progress ranges and transforms outside the map function
   const lineTransforms = sections.map((section) =>
-    section.content.map((line, lineIndex) => {
+    section.content.map((lineIndex:any) => {
       const sectionIndex = sections.indexOf(section)
       const lineScrollStart = 0.1 + sectionIndex * 0.25 + lineIndex * 0.03
       const lineScrollEnd = lineScrollStart + 0.1

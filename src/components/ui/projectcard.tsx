@@ -1,8 +1,8 @@
 
 
-import { useState, useRef } from "react"
+import {  useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { Github, ExternalLink, ChevronRight, ChevronLeft } from "lucide-react"
+import { Github, ExternalLink, } from "lucide-react"
 
 interface ProjectCardProps {
   project: {
