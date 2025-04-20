@@ -18,7 +18,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 850);
+      setScrolled(window.scrollY > 1350);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -26,7 +26,7 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    setMenuOpen(false); // Close menu on click
+    setMenuOpen(false);
     setTimeout(() => {
       const element = document.querySelector(href);
       if (element) {
