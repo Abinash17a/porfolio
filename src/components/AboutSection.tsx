@@ -2,8 +2,6 @@
 
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { FaReact, FaNodeJs, FaDatabase, FaGithub, FaFigma } from "react-icons/fa"
-import { SiNextdotjs, SiTailwindcss, SiTypescript, SiJavascript, SiVercel } from "react-icons/si"
 
 const EnhancedAboutSection = () => {
   const containerRef = useRef(null)
@@ -12,24 +10,21 @@ const EnhancedAboutSection = () => {
     offset: ["start start", "end end"],
   })
 
-  // Skills array with icons and colors
   const skills = [
-    { name: "React", icon: FaReact, color: "#61DAFB" },
-    { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
-    { name: "Node.js", icon: FaNodeJs, color: "#339933" },
-    { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-    { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
-    { name: "TailwindCSS", icon: SiTailwindcss, color: "#06B6D4" },
-    { name: "Databases", icon: FaDatabase, color: "#4479A1" },
-    { name: "GitHub", icon: FaGithub, color: "#181717" },
-    { name: "Figma", icon: FaFigma, color: "#F24E1E" },
-    { name: "Vercel", icon: SiVercel, color: "#000000" },
+    { name: "React", iconSrc: "/icons/pixel-react.svg" },
+    { name: "Next.js", iconSrc: "/icons/pixel-next.svg" },
+    { name: "Node.js", iconSrc: "/icons/pixel-node.svg" },
+    { name: "TypeScript", iconSrc: "/icons/pixel-typescript.svg" },
+    { name: "JavaScript", iconSrc: "/icons/pixel-javascript.svg" },
+    { name: "TailwindCSS", iconSrc: "/icons/pixel-tailwind.svg" },
+    { name: "Databases", iconSrc: "/icons/pixel-database.svg" },
+    { name: "GitHub", iconSrc: "/icons/pixel-github.svg" },
+    { name: "Figma", iconSrc: "/icons/pixel-figma.svg" },
+    { name: "Vercel", iconSrc: "/icons/pixel-vercel.svg" },
   ]
 
-  // Headline with gradient effect
   const headlineText = "Developer = You & Code"
 
-  // Main sections with text that will highlight on scroll
   const sections = [
     {
       title: "I craft digital experiences",
@@ -61,9 +56,8 @@ const EnhancedAboutSection = () => {
     },
   ]
 
-  // Calculate scroll progress ranges and transforms outside the map function
   const lineTransforms = sections.map((section) =>
-    section.content.map((lineIndex:any) => {
+    section.content.map((_, lineIndex) => {
       const sectionIndex = sections.indexOf(section)
       const lineScrollStart = 0.1 + sectionIndex * 0.25 + lineIndex * 0.03
       const lineScrollEnd = lineScrollStart + 0.1
@@ -91,7 +85,7 @@ const EnhancedAboutSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[200vh] bg-white text-gray-800 overflow-hidden py-20 px-4 sm:px-6 lg:px-8"
+      className="relative min-h-[200vh] bg-white text-gray-800 overflow-hidden py-10 px-4 sm:px-6 lg:px-8"
     >
       {/* Background gradient elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -101,19 +95,19 @@ const EnhancedAboutSection = () => {
       </div>
 
       <div className="max-w-7xl mx-auto">
-        {/* Headline with gradient */}
+        {/* Headline */}
         <div className="sticky top-[15vh] pt-20 pb-10 z-10">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent font-pixel">
             {headlineText}
-          </h1>
+          </h2>
         </div>
 
-        {/* Main content sections with scroll highlight effect */}
-        <div className="space-y-[25vh]">
+        {/* Main content sections */}
+        <div className="space-y-[12vh]">
           {sections.map((section, sectionIndex) => (
             <div key={sectionIndex} className="sticky top-[30vh] h-[50vh] flex flex-col">
               <motion.h2
-                className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
+                className="text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-pixel"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
@@ -130,7 +124,7 @@ const EnhancedAboutSection = () => {
                   return (
                     <motion.p
                       key={lineIndex}
-                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-tight"
+                      className="text-lg sm:text-xl md:text-2xl font-medium leading-tight font-pixel"
                       style={{ opacity, color }}
                     >
                       {line}
@@ -150,7 +144,7 @@ const EnhancedAboutSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: false, margin: "-100px" }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-2xl md:text-3xl font-bold mb-12 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-pixel">
             My Toolkit
           </h2>
 
@@ -165,13 +159,19 @@ const EnhancedAboutSection = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <div className="relative">
+                <div className="relative image-render-pixel">
                   <div className="absolute inset-0 bg-gradient-to-br from-indigo-400 to-purple-400 rounded-full opacity-20 blur-sm" />
                   <div className="relative bg-white p-4 rounded-full border border-gray-200 shadow-md">
-                    <skill.icon size={32} className="md:size-10 lg:size-12" style={{ color: skill.color }} />
+                    <img
+                      src={skill.iconSrc}
+                      alt={skill.name}
+                      className="w-8 h-8 md:w-10 md:h-10 image-render-pixel"
+                    />
                   </div>
                 </div>
-                <span className="mt-3 text-sm md:text-base font-medium text-gray-700">{skill.name}</span>
+                <span className="mt-3 text-sm md:text-base font-pixel text-gray-700">
+                  {skill.name}
+                </span>
               </motion.div>
             ))}
           </div>
@@ -182,3 +182,4 @@ const EnhancedAboutSection = () => {
 }
 
 export default EnhancedAboutSection
+

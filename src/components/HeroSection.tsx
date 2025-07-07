@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import dev from "../assets/dev.png"; // Adjust the path as necessary
+import pixelCoder from "../../public/images/pixel-coders.png";
+import bgHero from "../../public/images/japanbg.gif"; // or .jpg / .png
 
 const HeroSection = () => {
   return (
@@ -7,9 +8,12 @@ const HeroSection = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2 }}
-      className="min-h-screen flex items-center bg-black px-4 md:px-10" // Responsive padding
+      className="min-h-screen flex items-center bg-center bg-no-repeat px-4 md:px-10"
+      style={{
+        backgroundImage: `url(${bgHero})`, // ✅ Corrected
+      }}
     >
-      <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between text-white py-6 md:py-0">
+      <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between text-black py-6 md:py-0  rounded-xl">
         {/* Left Side - Text Content */}
         <div className="max-w-2xl w-full text-center md:text-left">
           <motion.h1
@@ -21,7 +25,7 @@ const HeroSection = () => {
             Crafting Digital Experiences
           </motion.h1>
           <motion.p
-            className="text-lg sm:text-xl md:text-2xl text-gray-200 leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl  text-black leading-relaxed"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
@@ -31,11 +35,11 @@ const HeroSection = () => {
         </div>
 
         {/* Right Side - Image */}
-        <div className="w-full md:w-1/3 mt-6 md:mt-0">
+        <div className="w-full md:w-1/3 mt-6 md:mt-0 flex justify-center">
           <motion.img
-            src={dev}
-            alt="Developer at work"
-            className="w-full h-auto object-contain max-h-96 md:max-h-full"
+            src={pixelCoder} // ✅ add .src just to be safe
+            alt="Pixel Coder"
+            className="w-80 h-80 object-contain image-render-pixel"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}

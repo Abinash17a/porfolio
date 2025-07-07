@@ -22,13 +22,8 @@ const ProjectShowcase = () => {
   return (
     <section
       ref={containerRef}
-      className="relative py-20 md:py-32 bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 overflow-hidden"
+      className="relative py-20 md:py-32 bg-white overflow-hidden font-pixel"
     >
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-purple-100 dark:bg-purple-900/10 blur-3xl opacity-70" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-blue-100 dark:bg-blue-900/10 blur-3xl opacity-70" />
-      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
         <motion.div
@@ -38,18 +33,20 @@ const ProjectShowcase = () => {
           className="text-center mb-16 md:mb-24"
         >
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-blue-600 tracking-wider"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            style={{ textShadow: '2px 2px 0px #fff, 4px 4px 0px #fff' }}
           >
-            My Projects
+            [ MY PROJECTS ]
           </motion.h2>
           <motion.p
-            className="text-slate-600 dark:text-slate-400 text-lg md:text-xl max-w-3xl mx-auto"
+            className="text-gray-700 text-lg md:text-xl max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
+            style={{ textShadow: '1px 1px 0px #fff' }}
           >
             A collection of my recent work and personal projects. Each project represents a unique challenge and
             learning experience.
@@ -66,9 +63,13 @@ const ProjectShowcase = () => {
             transition={{ duration: 0.5 }}
             className="grid md:grid-cols-2 gap-8 md:gap-12 items-center"
           >
-            {/* Project Image */}
+                        {/* Project Image */}
             <motion.div
-              className="relative rounded-2xl overflow-hidden shadow-2xl group"
+              className="relative border-4 border-blue-500 overflow-hidden group"
+              style={{
+                boxShadow: '4px 4px 0px #fff, 8px 8px 0px #fff',
+                imageRendering: 'pixelated'
+              }}
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
@@ -80,16 +81,17 @@ const ProjectShowcase = () => {
               alt={projects[activeProject].title}
               width={800}
               height={600}
-              className="w-full h-auto object-cover rounded-2xl"
+              className="w-full h-auto object-cover image-render-pixel"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                 <div className="flex gap-4">
                   <motion.a
                     href={projects[activeProject].github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white text-slate-900 p-3 rounded-full shadow-lg hover:bg-slate-100 transition-colors"
+                    className="bg-blue-500 text-white p-3 border-2 border-blue-700 hover:bg-blue-600 transition-colors"
+                    style={{ boxShadow: '2px 2px 0px #fff' }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -100,7 +102,8 @@ const ProjectShowcase = () => {
                     href={projects[activeProject].live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white text-slate-900 p-3 rounded-full shadow-lg hover:bg-slate-100 transition-colors"
+                    className="bg-green-500 text-white p-3 border-2 border-green-700 hover:bg-green-600 transition-colors"
+                    style={{ boxShadow: '2px 2px 0px #fff' }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -118,13 +121,14 @@ const ProjectShowcase = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="flex items-center mb-4">
-                <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
-                  Project {activeProject + 1}/{projects.length}
+                <span className="text-sm font-medium text-blue-600" style={{ textShadow: '1px 1px 0px #fff' }}>
+                  PROJECT {activeProject + 1}/{projects.length}
                 </span>
                 <div className="ml-auto flex gap-2">
                   <motion.button
                     onClick={prevProject}
-                    className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                    className="bg-blue-500 text-white p-2 border-2 border-blue-700 hover:bg-blue-600 transition-colors"
+                    style={{ boxShadow: '2px 2px 0px #fff' }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -133,7 +137,8 @@ const ProjectShowcase = () => {
                   </motion.button>
                   <motion.button
                     onClick={nextProject}
-                    className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                    className="bg-blue-500 text-white p-2 border-2 border-blue-700 hover:bg-blue-600 transition-colors"
+                    style={{ boxShadow: '2px 2px 0px #fff' }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -143,11 +148,11 @@ const ProjectShowcase = () => {
                 </div>
               </div>
 
-              <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              <h3 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4" style={{ textShadow: '2px 2px 0px #fff' }}>
                 {projects[activeProject].title}
               </h3>
 
-              <p className="text-slate-600 dark:text-slate-300 text-lg mb-6 leading-relaxed">
+              <p className="text-gray-700 text-lg mb-6 leading-relaxed" style={{ textShadow: '1px 1px 0px #fff' }}>
                 {projects[activeProject].description}
               </p>
 
@@ -155,7 +160,8 @@ const ProjectShowcase = () => {
                 {projects[activeProject].tags.map((tag) => (
                   <span
                     key={tag}
-                    className="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm font-medium px-3 py-1.5 rounded-full"
+                    className="bg-blue-500 text-white text-sm font-medium px-3 py-1.5 border-2 border-blue-700"
+                    style={{ boxShadow: '1px 1px 0px #fff' }}
                   >
                     {tag}
                   </span>
@@ -167,23 +173,25 @@ const ProjectShowcase = () => {
                   href={projects[activeProject].github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+                  className="flex items-center gap-2 bg-blue-500 text-white font-medium py-3 px-6 border-2 border-blue-700 hover:bg-blue-600 transition-colors"
+                  style={{ boxShadow: '3px 3px 0px #fff' }}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                 >
                   <Github className="w-5 h-5" />
-                  <span>View Code</span>
+                  <span>VIEW CODE</span>
                 </motion.a>
                 <motion.a
                   href={projects[activeProject].live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-2 bg-gradient-to-r ${projects[activeProject].color} text-white font-medium py-3 px-6 rounded-lg shadow-md transition-all`}
+                  className="flex items-center gap-2 bg-green-500 text-white font-medium py-3 px-6 border-2 border-green-700 hover:bg-green-600 transition-colors"
+                  style={{ boxShadow: '3px 3px 0px #fff' }}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                 >
                   <ExternalLink className="w-5 h-5" />
-                  <span>Live Demo</span>
+                  <span>LIVE DEMO</span>
                 </motion.a>
               </div>
             </motion.div>
@@ -196,8 +204,8 @@ const ProjectShowcase = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">
-            All Projects
+          <h3 className="text-2xl md:text-3xl font-bold text-blue-600 mb-8 text-center" style={{ textShadow: '2px 2px 0px #fff' }}>
+            [ ALL PROJECTS ]
           </h3>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -217,5 +225,5 @@ const ProjectShowcase = () => {
   )
 }
 
-
 export default ProjectShowcase
+
