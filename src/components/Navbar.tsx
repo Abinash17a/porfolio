@@ -10,8 +10,8 @@ const navItems = [
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [mobScrolled, setMobScrolled] = useState(false);
+  const [scrolled] = useState(false);
+  const [mobScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const clickSound = new Audio("/sounds/click.wav");
 
