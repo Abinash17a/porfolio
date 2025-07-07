@@ -82,33 +82,17 @@ const ContactSection = () => {
   }, [isFormInView, formControls]);
 
   return (
-    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
-      {/* Background elements */}
+    <section className="relative py-20 overflow-hidden bg-white font-pixel">
+      {/* Pixelated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
-          transition={{ duration: 1 }}
-          className="absolute top-[10%] left-[5%] w-64 h-64 rounded-full bg-purple-200/30 dark:bg-purple-900/10 blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="absolute bottom-[20%] right-[10%] w-80 h-80 rounded-full bg-blue-200/30 dark:bg-blue-900/10 blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="absolute top-[40%] right-[15%] w-40 h-40 rounded-full bg-emerald-200/30 dark:bg-emerald-900/10 blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="absolute bottom-[10%] left-[20%] w-56 h-56 rounded-full bg-amber-200/30 dark:bg-amber-900/10 blur-3xl"
-        />
+        {/* Pixel clouds */}
+        <div className="absolute top-20 left-10 w-16 h-8 bg-gray-200" style={{ clipPath: 'polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%)' }} />
+        <div className="absolute top-16 right-20 w-12 h-6 bg-gray-200" style={{ clipPath: 'polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%)' }} />
+        <div className="absolute top-24 left-1/3 w-14 h-7 bg-gray-200" style={{ clipPath: 'polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%)' }} />
+        {/* Pixel decorations */}
+        <div className="absolute bottom-20 left-1/4 w-8 h-8 bg-blue-200" />
+        <div className="absolute bottom-32 right-1/4 w-6 h-6 bg-green-200" />
+        <div className="absolute top-1/2 right-10 w-4 h-4 bg-yellow-200" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
@@ -138,9 +122,10 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-gray-100"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-blue-600"
+            style={{ textShadow: '2px 2px 0px #fff' }}
           >
-            Contact Me
+            [ CONTACT ME ]
           </motion.h2>
 
           <motion.p
@@ -148,7 +133,8 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+            className="text-gray-700 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+            style={{ textShadow: '1px 1px 0px #fff' }}
           >
             Have a project in mind or want to collaborate? I'd love to hear from you! Fill out the form below or reach
             out directly through my contact information.
@@ -158,14 +144,14 @@ const ContactSection = () => {
         <div className="grid md:grid-cols-5 gap-10 lg:gap-16 items-start">
           {/* Contact Form */}
           <motion.div animate={formControls} initial={{ opacity: 0, y: 20 }} className="md:col-span-3 relative">
-            <div className="relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 p-6 sm:p-8 overflow-hidden">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send a Message</h3>
+            <div className="relative bg-white border-4 border-blue-500 p-6 sm:p-8 overflow-hidden" style={{ boxShadow: '4px 4px 0px #fff, 8px 8px 0px #fff' }}>
+              <h3 className="text-2xl font-bold text-blue-600 mb-6" style={{ textShadow: '2px 2px 0px #fff' }}>SEND A MESSAGE</h3>
 
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-gray-700 dark:text-gray-200">
-                      Name
+                    <Label htmlFor="name" className="text-gray-700" style={{ textShadow: '1px 1px 0px #fff' }}>
+                      NAME
                     </Label>
                     <Input
                       id="name"
@@ -173,14 +159,14 @@ const ContactSection = () => {
                       placeholder="Your name"
                       value={formState.name}
                       onChange={handleInputChange}
-                      className="bg-white/50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-700 focus:border-gray-500 dark:focus:border-gray-400 transition-all duration-200"
+                      className="bg-white border-2 border-gray-300 focus:border-blue-500 transition-all duration-200"
                       required
                       disabled={formStatus === "submitting"}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-gray-700 dark:text-gray-200">
-                      Email
+                    <Label htmlFor="email" className="text-gray-700" style={{ textShadow: '1px 1px 0px #fff' }}>
+                      EMAIL
                     </Label>
                     <Input
                       id="email"
@@ -189,7 +175,7 @@ const ContactSection = () => {
                       placeholder="Your email"
                       value={formState.email}
                       onChange={handleInputChange}
-                      className="bg-white/50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-700 focus:border-gray-500 dark:focus:border-gray-400 transition-all duration-200"
+                      className="bg-white border-2 border-gray-300 focus:border-blue-500 transition-all duration-200"
                       required
                       disabled={formStatus === "submitting"}
                     />
@@ -197,8 +183,8 @@ const ContactSection = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="subject" className="text-gray-700 dark:text-gray-200">
-                    Subject
+                  <Label htmlFor="subject" className="text-gray-700" style={{ textShadow: '1px 1px 0px #fff' }}>
+                    SUBJECT
                   </Label>
                   <Input
                     id="subject"
@@ -206,15 +192,15 @@ const ContactSection = () => {
                     placeholder="What's this about?"
                     value={formState.subject}
                     onChange={handleInputChange}
-                    className="bg-white/50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-700 focus:border-gray-500 dark:focus:border-gray-400 transition-all duration-200"
+                    className="bg-white border-2 border-gray-300 focus:border-blue-500 transition-all duration-200"
                     required
                     disabled={formStatus === "submitting"}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-gray-700 dark:text-gray-200">
-                    Message
+                  <Label htmlFor="message" className="text-gray-700" style={{ textShadow: '1px 1px 0px #fff' }}>
+                    MESSAGE
                   </Label>
                   <Textarea
                     id="message"
@@ -223,7 +209,7 @@ const ContactSection = () => {
                     rows={5}
                     value={formState.message}
                     onChange={handleInputChange}
-                    className="bg-white/50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-700 focus:border-gray-500 dark:focus:border-gray-400 resize-none transition-all duration-200"
+                    className="bg-white border-2 border-gray-300 focus:border-blue-500 resize-none transition-all duration-200"
                     required
                     disabled={formStatus === "submitting"}
                   />
@@ -232,7 +218,8 @@ const ContactSection = () => {
                 <Button
                   type="submit"
                   disabled={formStatus === "submitting"}
-                  className="w-full py-3 text-base font-medium rounded-lg bg-gray-800 hover:bg-gray-900 text-white transition-all duration-200 disabled:bg-gray-400"
+                  className="w-full py-3 text-base font-medium bg-blue-500 hover:bg-blue-600 text-white border-2 border-blue-700 transition-all duration-200 disabled:bg-gray-400"
+                  style={{ boxShadow: '3px 3px 0px #fff' }}
                 >
                   {formStatus === "idle" && (
                     <>
@@ -272,8 +259,8 @@ const ContactSection = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="md:col-span-2"
           >
-            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 p-6 sm:p-8 overflow-hidden">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8">Contact Information</h3>
+            <div className="bg-white border-4 border-blue-500 p-6 sm:p-8 overflow-hidden" style={{ boxShadow: '4px 4px 0px #fff, 8px 8px 0px #fff' }}>
+              <h3 className="text-2xl font-bold text-blue-600 mb-8" style={{ textShadow: '2px 2px 0px #fff' }}>CONTACT INFO</h3>
 
               <div className="space-y-8">
                 <motion.div
@@ -284,15 +271,16 @@ const ContactSection = () => {
                   className="flex items-start space-x-4"
                 >
                   <div className="flex-shrink-0">
-                    <div className="relative bg-blue-100 p-3 rounded-full shadow-md">
-                      <Mail className="h-6 w-6 text-blue-600" />
+                    <div className="relative bg-blue-500 p-3 border-2 border-blue-700" style={{ boxShadow: '2px 2px 0px #fff' }}>
+                      <Mail className="h-6 w-6 text-white" />
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Email</h4>
+                    <h4 className="text-sm font-medium text-gray-500 mb-1" style={{ textShadow: '1px 1px 0px #fff' }}>EMAIL</h4>
                     <a
                       href="mailto:abinashchhetri.44@gmail.com"
-                      className="text-lg font-medium text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      className="text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors"
+                      style={{ textShadow: '1px 1px 0px #fff' }}
                     >
                       abinashchhetri.44@gmail.com
                     </a>
@@ -307,15 +295,16 @@ const ContactSection = () => {
                   className="flex items-start space-x-4"
                 >
                   <div className="flex-shrink-0">
-                    <div className="relative bg-green-100 p-3 rounded-full shadow-md">
-                      <Phone className="h-6 w-6 text-green-600" />
+                    <div className="relative bg-green-500 p-3 border-2 border-green-700" style={{ boxShadow: '2px 2px 0px #fff' }}>
+                      <Phone className="h-6 w-6 text-white" />
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Phone</h4>
+                    <h4 className="text-sm font-medium text-gray-500 mb-1" style={{ textShadow: '1px 1px 0px #fff' }}>PHONE</h4>
                     <a
                       href="tel:+916296344129"
-                      className="text-lg font-medium text-gray-900 dark:text-gray-100 hover:text-green-600 dark:hover:text-green-400 transition-colors"
+                      className="text-lg font-medium text-gray-900 hover:text-green-600 transition-colors"
+                      style={{ textShadow: '1px 1px 0px #fff' }}
                     >
                       +91 6296-344-129
                     </a>
@@ -330,13 +319,13 @@ const ContactSection = () => {
                   className="flex items-start space-x-4"
                 >
                   <div className="flex-shrink-0">
-                    <div className="relative bg-purple-100 p-3 rounded-full shadow-md">
-                      <MapPin className="h-6 w-6 text-purple-600" />
+                    <div className="relative bg-purple-500 p-3 border-2 border-purple-700" style={{ boxShadow: '2px 2px 0px #fff' }}>
+                      <MapPin className="h-6 w-6 text-white" />
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Location</h4>
-                    <p className="text-lg font-medium text-gray-900 dark:text-gray-100">Haldia, India</p>
+                    <h4 className="text-sm font-medium text-gray-500 mb-1" style={{ textShadow: '1px 1px 0px #fff' }}>LOCATION</h4>
+                    <p className="text-lg font-medium text-gray-900" style={{ textShadow: '1px 1px 0px #fff' }}>Haldia, India</p>
                   </div>
                 </motion.div>
               </div>
@@ -349,36 +338,20 @@ const ContactSection = () => {
                 transition={{ duration: 0.6, delay: 0.6 }}
                 className="mt-10"
               >
-                <div className="relative h-64 rounded-xl overflow-hidden">
+                <div className="relative h-64 border-4 border-blue-500 overflow-hidden" style={{ boxShadow: '2px 2px 0px #fff' }}>
                   <iframe
                     title="Map of Haldia, India"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3692.456789012345!2d88.0618!3d22.0600!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1ff3a9a9a9a9a9%3A0x1234567890abcdef!2sHaldia%2C%20West%20Bengal%2C%20India!5e0!3m2!1sen!2sus!4v1634567890123"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3692.456789012345!2d88.0618!3d22.0600!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1ff3a9a9a9a9%3A0x1234567890abcdef!2sHaldia%2C%20West%20Bengal%2C%20India!5e0!3m2!1sen!2sus!4v1634567890123"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen={true}
                     loading="lazy"
-                    className="rounded-xl"
                   ></iframe>
-                  {/* Decorative elements */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 0.3, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.7 }}
-                    className="absolute top-5 left-5 w-20 h-20 rounded-full border-4 border-gray-300/30 dark:border-gray-700/30"
-                  />
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 0.3, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.8 }}
-                    className="absolute bottom-5 right-5 w-16 h-16 rounded-full border-4 border-gray-300/30 dark:border-gray-700/30"
-                  />
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 0.3, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.9 }}
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full border-4 border-gray-300/30 dark:border-gray-700/30"
-                  />
+                  {/* Pixelated decorative elements */}
+                  <div className="absolute top-5 left-5 w-8 h-8 bg-blue-200" />
+                  <div className="absolute bottom-5 right-5 w-6 h-6 bg-green-200" />
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-yellow-200" />
                 </div>
               </motion.div>
             </div>
@@ -390,3 +363,4 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
+
