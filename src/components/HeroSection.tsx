@@ -1,8 +1,24 @@
 import { motion } from "framer-motion";
 import pixelCoder from "../../public/images/pixel-coders.png";
 import bgHero from "../../public/images/japanbg.gif"; // or .jpg / .png
+import { useEffect, useState } from "react";
+import PixelLoader from "./PixelLoader";
 
 const HeroSection = () => {
+   const [isLoading, setIsLoading] = useState(true);
+   useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (isLoading) return <PixelLoader />;
+
+
+
+
+
   return (
     <motion.section
       initial={{ opacity: 0 }}

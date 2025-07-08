@@ -15,12 +15,12 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const clickSound = new Audio("/sounds/click.wav");
 
-useEffect(() => {
-  const updateSize = () => setIsMobile(window.innerWidth < 640);
-  updateSize(); // run once
-  window.addEventListener("resize", updateSize);
-  return () => window.removeEventListener("resize", updateSize);
-}, []);;
+  useEffect(() => {
+    const updateSize = () => setIsMobile(window.innerWidth < 640);
+    updateSize(); // run once
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);;
 
   const scrollToSection = (href: string) => {
     setMenuOpen(false);
@@ -33,22 +33,26 @@ useEffect(() => {
   };
 
   return (
-  <motion.nav
-  initial={{ y: -100, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 0.5 }}
-className={`fixed top-0 w-full z-50 px-4 py-4 border-b-4 border-black backdrop-blur-md transition-all duration-300 ${
-  isMobile
-    ? mobScrolled
-      ? "bg-black/60 shadow-md"
-      : "bg-transparent"
-    : scrolled
-    ? "bg-black/60 shadow-md"
-    : "bg-transparent"
-}`}
->
+    <motion.nav
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 w-full z-50 px-4 py-4 border-b-4 border-black backdrop-blur-md transition-all duration-300 ${isMobile
+          ? mobScrolled
+            ? "bg-black/60 shadow-md"
+            : "bg-transparent"
+          : scrolled
+            ? "bg-black/60 shadow-md"
+            : "bg-transparent"
+        }`}
+    >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <h1 className="font-pixel text-base md:text-lg text-green-300 tracking-wider">
+        <h1
+          className="font-pixel text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-green-300 tracking-wider"
+          style={{
+            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)", // Makes it pop on light/dark backgrounds
+          }}
+        >
           {"< Abinash />"}
         </h1>
 
@@ -99,9 +103,10 @@ className={`fixed top-0 w-full z-50 px-4 py-4 border-b-4 border-black backdrop-b
                 key={item.name}
                 className="block w-full text-left font-pixel text-green-300 px-4 py-2 border border-green-300 hover:bg-green-300 hover:text-black"
                 onClick={() => {
-                   clickSound.currentTime = 0; // rewind to start
-                    clickSound.play();
-                  scrollToSection(item.href)}
+                  clickSound.currentTime = 0; // rewind to start
+                  clickSound.play();
+                  scrollToSection(item.href)
+                }
                 }
               >
                 {item.name.toUpperCase()}
