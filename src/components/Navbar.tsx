@@ -61,7 +61,7 @@ const Navbar = () => {
           {navItems.map((item) => (
             <li key={item.name}>
               <button
-                className="font-pixel px-4 py-2 bg-black text-green-300 border-2 border-green-800 hover:bg-green-1000 hover:text-black"
+                className="font-pixel px-4 py-2 bg-black text-green-300 border-2 border-green-800 hover:bg-green-1000 hover:text-white"
                 onClick={() => {
                   clickSound.currentTime = 0; // rewind to start
                   clickSound.play();
