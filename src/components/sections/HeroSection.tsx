@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import pixelCoder from "../../public/images/pixel-coders.png";
-import bgHero from "../../public/images/japanbg.gif"; // or .jpg / .png
+import pixelCoder from "../../../public/images/pixel-coders.png";
+import bgHero from "../../../public/images/japanbg.gif"; // or .jpg / .png
 import { useEffect, useState } from "react";
-import PixelLoader from "./PixelLoader";
+import PixelLoader from "../widgets/PixelLoader";
 
 const HeroSection = () => {
    const [isLoading, setIsLoading] = useState(true);

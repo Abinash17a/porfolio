@@ -1,10 +1,10 @@
 import './App.css'
-import AboutSection from './components/AboutSection'
-import ContactSection from './components/ContactSection'
-import HeroSection from './components/HeroSection'
-import Navbar from './components/Navbar'
-import ProjectSection from './components/ProjectSection'
-import BackgroundMusic from './components/BackgroundMusic'
+import AboutSection from './components/sections/AboutSection'
+import ContactSection from './components/sections/ContactSection'
+import HeroSection from './components/sections/HeroSection'
+import Navbar from './components/layout/Navbar'
+import ProjectSection from './components/sections/ProjectSection'
+import BackgroundMusic from './components/widgets/BackgroundMusic'
 
 function App() {
   return (

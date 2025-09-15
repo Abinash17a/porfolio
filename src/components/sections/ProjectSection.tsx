@@ -3,8 +3,8 @@
 import { useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Github, ExternalLink, ChevronRight, ChevronLeft } from "lucide-react"
-import { ProjectCard } from "./ui/projectcard"
-import { projects } from "../data/projects"
+import { ProjectCard } from "../ui/projectcard"
+import { projects } from "../../data/projects"
 
 const ProjectShowcase = () => {
   const [activeProject, setActiveProject] = useState(0)
