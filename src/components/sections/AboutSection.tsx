@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { motion, useScroll } from "framer-motion"
 import { useTransform } from "framer-motion"
 
-const EnhancedAboutSection = () => {
+const AboutSection = () => {
   const containerRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -54,37 +54,40 @@ const EnhancedAboutSection = () => {
     },
   ]
 
-  const lineTransforms = sections.map((section) =>
-    section.content.map((_, lineIndex) => {
-      const sectionIndex = sections.indexOf(section)
-      const lineScrollStart = 0.1 + sectionIndex * 0.25 + lineIndex * 0.03
-      const lineScrollEnd = lineScrollStart + 0.1
+ // Opacity transforms (Starts Sooner)
+const opacity00 = useTransform(scrollYProgress, [0.00, 0.02, 0.04, 0.06], [0.3, 1, 1, 0.3]) // Start at 0%
+const opacity01 = useTransform(scrollYProgress, [0.01, 0.03, 0.05, 0.07], [0.3, 1, 1, 0.3]) // Start at 1%
+const opacity02 = useTransform(scrollYProgress, [0.02, 0.04, 0.06, 0.08], [0.3, 1, 1, 0.3]) // Start at 2%
+// The following groups are fine as they are meant to appear later in the scroll.
+const opacity10 = useTransform(scrollYProgress, [0.25, 0.29, 0.33, 0.37], [0.3, 1, 1, 0.3])
+const opacity11 = useTransform(scrollYProgress, [0.28, 0.32, 0.36, 0.40], [0.3, 1, 1, 0.3])
+const opacity12 = useTransform(scrollYProgress, [0.31, 0.35, 0.39, 0.43], [0.3, 1, 1, 0.3])
+const opacity20 = useTransform(scrollYProgress, [0.5, 0.54, 0.58, 0.62], [0.3, 1, 1, 0.3])
+const opacity21 = useTransform(scrollYProgress, [0.53, 0.57, 0.61, 0.65], [0.3, 1, 1, 0.3])
+const opacity22 = useTransform(scrollYProgress, [0.56, 0.60, 0.64, 0.68], [0.3, 1, 1, 0.3])
+// Color transforms (Starts Sooner)
+const color00 = useTransform(scrollYProgress, [0.00, 0.02, 0.04, 0.06], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"]) // Start at 0%
+const color01 = useTransform(scrollYProgress, [0.01, 0.03, 0.05, 0.07], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"]) // Start at 1%
+const color02 = useTransform(scrollYProgress, [0.02, 0.04, 0.06, 0.08], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"]) // Start at 2%
+// The following groups are fine as they are meant to appear later in the scroll.
+const color10 = useTransform(scrollYProgress, [0.3, 0.32, 0.34, 0.36], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color11 = useTransform(scrollYProgress, [0.33, 0.35, 0.37, 0.39], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color12 = useTransform(scrollYProgress, [0.36, 0.38, 0.40, 0.42], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color20 = useTransform(scrollYProgress, [0.55, 0.57, 0.59, 0.61], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color21 = useTransform(scrollYProgress, [0.58, 0.60, 0.62, 0.64], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color22 = useTransform(scrollYProgress, [0.61, 0.63, 0.65, 0.67], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
 
-      return { lineScrollStart, lineScrollEnd }
-    }),
-  )
+  const opacityTransforms = [
+    [opacity00, opacity01, opacity02],
+    [opacity10, opacity11, opacity12],
+    [opacity20, opacity21, opacity22],
+  ]
 
-  const opacityTransforms = lineTransforms.map((sectionTransforms) =>
-    sectionTransforms.map(({ lineScrollStart, lineScrollEnd }) => {
-      const scrollYProgressRef = scrollYProgress
-      return useTransform(
-        scrollYProgressRef,
-        [lineScrollStart - 0.1, lineScrollStart, lineScrollEnd, lineScrollEnd + 0.1],
-        [0.3, 1, 1, 0.3],
-      )
-    }),
-  )
-
-  const colorTransforms = lineTransforms.map((sectionTransforms) =>
-    sectionTransforms.map(({ lineScrollStart, lineScrollEnd }) => {
-      const scrollYProgressRef = scrollYProgress
-      return useTransform(
-        scrollYProgressRef,
-        [lineScrollStart - 0.05, lineScrollStart, lineScrollEnd, lineScrollEnd + 0.05],
-        ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"],
-      )
-    }),
-  )
+  const colorTransforms = [
+    [color00, color01, color02],
+    [color10, color11, color12],
+    [color20, color21, color22],
+  ]
 
   return (
     <section
@@ -109,7 +112,7 @@ const EnhancedAboutSection = () => {
         {/* Main content sections */}
         <div className="space-y-[12vh]">
           {sections.map((section, sectionIndex) => (
-            <div key={sectionIndex} className="sticky top-[30vh] h-[50vh] flex flex-col py-10">
+            <div key={sectionIndex} className="sticky top-[30vh] h-[50vh] flex flex-col py-20">
               <motion.h2
                 className="text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-pixel"
                 initial={{ opacity: 0 }}
@@ -322,4 +325,4 @@ const EnhancedAboutSection = () => {
   )
 }
 
-export default EnhancedAboutSection
+export default AboutSection
