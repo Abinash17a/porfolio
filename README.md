@@ -48,3 +48,79 @@ export default tseslint.config({
   },
 })
 ```
+
+```
+portfolio
+├─ 📁public
+│  ├─ 📁icons
+│  │  ├─ 📄pixel-character-1.svg
+│  │  ├─ 📄pixel-character-2.svg
+│  │  ├─ 📄pixel-character-3.svg
+│  │  ├─ 📄pixel-database.svg
+│  │  ├─ 📄pixel-figma.svg
+│  │  ├─ 📄pixel-github.svg
+│  │  ├─ 📄pixel-javascript.svg
+│  │  ├─ 📄pixel-next.svg
+│  │  ├─ 📄pixel-node.svg
+│  │  ├─ 📄pixel-react.svg
+│  │  ├─ 📄pixel-tailwind.svg
+│  │  ├─ 📄pixel-typescript.svg
+│  │  └─ 📄pixel-vercel.svg
+│  ├─ 📁images
+│  │  ├─ 📄japanbg.gif
+│  │  ├─ 📄pcbackground.png
+│  │  ├─ 📄pixel-coder.png
+│  │  ├─ 📄pixel-coderm.png
+│  │  └─ 📄pixel-coders.png
+│  ├─ 📁sounds
+│  │  ├─ 📄click.wav
+│  │  ├─ 📄japanese-ambient.mp3
+│  │  └─ 📄README.md
+│  └─ 📄vite.svg
+├─ 📁src
+│  ├─ 📁assets
+│  │  ├─ 📄dev.png
+│  │  └─ 📄react.svg
+│  ├─ 📁components
+│  │  ├─ 📁ui
+│  │  │  ├─ 📄button.tsx
+│  │  │  ├─ 📄card-stack.tsx
+│  │  │  ├─ 📄input.tsx
+│  │  │  ├─ 📄label.tsx
+│  │  │  ├─ 📄projectcard.tsx
+│  │  │  └─ 📄textarea.tsx
+│  │  ├─ 📄AboutSection.tsx
+│  │  ├─ 📄BackgroundMusic.tsx
+│  │  ├─ 📄ContactSection.tsx
+│  │  ├─ 📄HeroSection.tsx
+│  │  ├─ 📄Navbar.tsx
+│  │  ├─ 📄PixelLoader.tsx
+│  │  └─ 📄ProjectSection.tsx
+│  ├─ 📁data
+│  │  └─ 📄projects.ts
+│  ├─ 📁hooks
+│  │  └─ 📄useScrollProgress.ts
+│  ├─ 📁lib
+│  │  └─ 📄utils.ts
+│  ├─ 📁utils
+│  │  └─ 📄contact.ts
+│  ├─ 📄App.css
+│  ├─ 📄App.tsx
+│  ├─ 📄index.css
+│  ├─ 📄main.tsx
+│  └─ 📄vite-env.d.ts
+├─ 📄.env
+├─ 📄.gitignore
+├─ 📄components.json
+├─ 📄eslint.config.js
+├─ 📄index.html
+├─ 📄package-lock.json
+├─ 📄package.json
+├─ 📄postcss.config.js
+├─ 📄README.md
+├─ 📄tailwind.config.js
+├─ 📄tsconfig.app.json
+├─ 📄tsconfig.json
+├─ 📄tsconfig.node.json
+└─ 📄vite.config.ts
+```

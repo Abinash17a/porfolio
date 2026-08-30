@@ -1,17 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Press+Start+2P&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 
+:root {
+  --font-body: 'Inter', sans-serif;
+  --font-display: 'Press Start 2P', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg-primary: #070b17;
+  --bg-secondary: #101827;
+  --bg-panel: rgba(15, 23, 42, 0.8);
+  --bg-soft: #172033;
+  --accent: #d4a856;
+  --accent-strong: #f5c96a;
+  --accent-blue: #7dd3fc;
+  --text: #e5edf8;
+  --muted: #c2cedf;
+  --border: rgba(148, 163, 184, 0.24);
+}
 
 body {
-  background-color: #0f0f0f;
-  color: #f0f0f0;
-  font-family: 'Press Start 2P', monospace;
+  position: relative;
+  background:
+    radial-gradient(circle at top left, rgba(125, 211, 252, 0.12), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(212, 168, 86, 0.08), transparent 28%),
+    var(--bg-primary);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(125, 211, 252, 0.14), transparent 18%),
+    radial-gradient(circle at 75% 30%, rgba(196, 181, 253, 0.11), transparent 20%),
+    radial-gradient(circle at 55% 78%, rgba(212, 168, 86, 0.1), transparent 22%);
+  filter: blur(28px);
+  opacity: 0.9;
+  animation: ambientDrift 22s ease-in-out infinite alternate;
+}
+
+body::after {
+  background:
+    linear-gradient(rgba(148, 163, 184, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.025) 1px, transparent 1px);
+  background-size: 68px 68px;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.8) 22%, transparent 78%);
+  opacity: 0.35;
+  animation: gridShift 30s linear infinite;
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.app-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    rgba(125, 211, 252, 0.04),
+    rgba(212, 168, 86, 0.02),
+    rgba(196, 181, 253, 0.03),
+    transparent 60%
+  );
+  opacity: 0.7;
+  animation: sheenShift 18s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after,
+  .app-shell::before {
+    animation: none !important;
+  }
+}
+
+@keyframes ambientDrift {
+  0% {
+    transform: translate3d(-2%, 0%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, 3%, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(-1%, -2%, 0) scale(1.08);
+  }
+}
+
+@keyframes gridShift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -2%, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(-2%, 2%, 0) scale(1.08);
+  }
+}
+
+@keyframes sheenShift {
+  0% {
+    transform: translateX(-4%) translateY(0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateX(4%) translateY(1%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(-2%) translateY(-1%);
+    opacity: 0.6;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-pixel,
+.pixel-label {
+  font-family: var(--font-display);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+p,
+li,
+a,
+span,
+button,
+input,
+textarea {
+  font-family: var(--font-body);
 }
 
 .image-render-pixel {
   image-rendering: pixelated;
+}
+
+.scroll-progress-rail {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  pointer-events: none;
+  padding: 0 18px 18px;
+}
+
+.scroll-progress-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 180px;
+  margin: 0 auto 8px;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.8);
+}
+
+.scroll-progress-meta strong {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #f5c96a;
+}
+
+.scroll-progress-track {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  overflow: hidden;
+  box-shadow: inset 0 0 16px rgba(15, 23, 42, 0.9), 0 10px 25px rgba(2, 6, 23, 0.25);
+}
+
+.scroll-progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #7dd3fc 0%, #d4a856 50%, #c4b5fd 100%);
+  box-shadow: 0 0 22px rgba(125, 211, 252, 0.35);
+}
+
+.text-content {
+  max-width: 65ch;
 }
 
 /* Custom slider styles */
