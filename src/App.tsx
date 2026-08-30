@@ -8,7 +8,7 @@ import BackgroundMusic from './components/widgets/BackgroundMusic'
 
 function App() {
   return (
-    <>
+    <div className="app-shell">
       <Navbar/>
       <BackgroundMusic />
       <div id="hero">
@@ -23,7 +23,7 @@ function App() {
       <div id="contact">
         <ContactSection/>
       </div>
-    </>
+    </div>
   )
 }
 

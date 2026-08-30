@@ -10,8 +10,7 @@ const navItems = [
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [scrolled] = useState(false);
-  const [mobScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const clickSound = new Audio("/sounds/click.wav");
 
@@ -20,7 +19,14 @@ const Navbar = () => {
     updateSize(); // run once
     window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
-  }, []);;
+  }, []);
+
+  useEffect(() => {
+    const updateScroll = () => setScrolled(window.scrollY > 20);
+    updateScroll(); // run once in case page loads mid-scroll
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    return () => window.removeEventListener("scroll", updateScroll);
+  }, []);
 
   const scrollToSection = (href: string) => {
     setMenuOpen(false);
@@ -37,35 +43,37 @@ const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 w-full z-50 px-4 py-4 border-b-4 border-black backdrop-blur-md transition-all duration-300 ${isMobile
-          ? mobScrolled
-            ? "bg-black/60 shadow-md"
-            : "bg-transparent"
-          : scrolled
-            ? "bg-black/60 shadow-md"
-            : "bg-transparent"
-        }`}
+      className={`fixed top-0 left-0 w-full z-50 border-b border-white/10 backdrop-blur-xl transition-all duration-300 ${
+        scrolled
+          ? "px-3 sm:px-6 py-1.5 sm:py-2 bg-slate-950/80 shadow-lg shadow-black/30"
+          : "px-4 sm:px-6 py-2.5 sm:py-3 bg-slate-900/30"
+      }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <h1
-          className="font-pixel text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-green-300 tracking-wider"
+          className={`font-pixel font-bold text-[#f5c96a] tracking-wider transition-all duration-300 ${
+            scrolled
+              ? "text-xs sm:text-base md:text-lg"
+              : "text-sm sm:text-lg md:text-xl lg:text-2xl"
+          }`}
           style={{
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)", // Makes it pop on light/dark backgrounds
+            textShadow: "2px 2px 0 rgba(15, 23, 42, 0.9)",
           }}
         >
           {"< Abinash />"}
         </h1>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-4">
+        <ul className="hidden md:flex items-center gap-2 sm:gap-3">
           {navItems.map((item) => (
             <li key={item.name}>
               <button
-                className="font-pixel px-4 py-2 bg-black text-green-300 border-2 border-green-800 hover:bg-green-1000 hover:text-white"
+                className={`font-pixel text-slate-100/90 transition-all duration-200 hover:bg-[#d4a856]/10 hover:text-[#f5c96a] rounded-full border border-white/10 ${
+                  scrolled ? "px-3 py-1.5 text-[10px]" : "px-4 py-2 text-xs"
+                }`}
                 onClick={() => {
-                  clickSound.currentTime = 0; // rewind to start
+                  clickSound.currentTime = 0;
                   clickSound.play();
-                  scrollToSection(item.href)
+                  scrollToSection(item.href);
                 }}
               >
                 {item.name.toUpperCase()}
@@ -74,40 +82,41 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Mobile Menu Toggle */}
         <div className="md:hidden">
           <button
-            className="text-green-300"
+            className="text-[#f5c96a] p-1.5 sm:p-2 rounded-full border border-[#d4a856]/30 bg-white/5"
             onClick={() => {
-              setMenuOpen((prev) => !prev)
-              clickSound.currentTime = 0; // rewind to start
+              setMenuOpen((prev) => !prev);
+              clickSound.currentTime = 0;
               clickSound.play();
             }}
           >
-            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {menuOpen ? (
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
+            ) : (
+              <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden mt-4 space-y-2 bg-black p-4 border-t-4 border-green-400"
+            className="md:hidden mt-3 sm:mt-4 max-w-7xl mx-auto space-y-2 bg-slate-950/90 backdrop-blur-xl p-3 sm:p-4 rounded-2xl border border-white/10"
           >
             {navItems.map((item) => (
               <button
                 key={item.name}
-                className="block w-full text-left font-pixel text-green-300 px-4 py-2 border border-green-300 hover:bg-green-300 hover:text-black"
+                className="block w-full text-left font-pixel text-[#f5c96a] text-xs sm:text-sm px-4 py-2 rounded-xl border border-[#d4a856]/30 hover:bg-[#d4a856] hover:text-slate-950 transition-colors"
                 onClick={() => {
-                  clickSound.currentTime = 0; // rewind to start
+                  clickSound.currentTime = 0;
                   clickSound.play();
-                  scrollToSection(item.href)
-                }
-                }
+                  scrollToSection(item.href);
+                }}
               >
                 {item.name.toUpperCase()}
               </button>

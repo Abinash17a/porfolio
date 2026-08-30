@@ -49,7 +49,7 @@ const BackgroundMusic = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.5 }}
-        className="bg-white/90 backdrop-blur-sm border-2 border-gray-300 rounded-lg p-3 shadow-lg font-pixel"
+        className="bg-white/90 backdrop-blur-sm border-2 border-gray-300 rounded-lg p-3 shadow-lg"
       >
         {/* Hidden audio element */}
         <audio
@@ -62,8 +62,8 @@ const BackgroundMusic = () => {
           {/* Play/Pause Button */}
           <motion.button
             onClick={togglePlay}
-            className="bg-blue-500 text-white p-2 rounded border-2 border-blue-700 hover:bg-blue-600 transition-colors"
-            style={{ boxShadow: '2px 2px 0px #fff' }}
+            className="bg-[#d4a856] text-slate-950 p-2 rounded border border-[#f5c96a] hover:bg-[#f5c96a] transition-colors"
+            style={{ boxShadow: '0 8px 18px rgba(212, 168, 86, 0.2)' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -73,10 +73,10 @@ const BackgroundMusic = () => {
           {/* Mute Button */}
           <motion.button
             onClick={toggleMute}
-            className={`p-2 rounded border-2 transition-colors ${
+            className={`p-2 rounded border transition-colors ${
               isMuted
-                ? 'bg-red-500 text-white border-red-700 hover:bg-red-600'
-                : 'bg-green-500 text-white border-green-700 hover:bg-green-600'
+                ? 'bg-slate-800 text-white border-slate-600 hover:bg-slate-700'
+                : 'bg-[#7dd3fc] text-slate-950 border-[#bae6fd] hover:bg-[#bae6fd]'
             }`}
             style={{ boxShadow: '2px 2px 0px #fff' }}
             whileHover={{ scale: 1.05 }}

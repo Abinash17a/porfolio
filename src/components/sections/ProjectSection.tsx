@@ -22,7 +22,7 @@ const ProjectShowcase = () => {
   return (
     <section
       ref={containerRef}
-      className="relative py-20 md:py-32 bg-white overflow-hidden font-pixel"
+      className="relative py-20 md:py-32 overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(212,168,86,0.08),_transparent_28%),linear-gradient(180deg,#070b17_0%,#0f172a_100%)]"
     >
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
@@ -33,7 +33,7 @@ const ProjectShowcase = () => {
           className="text-center mb-16 md:mb-24"
         >
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-blue-600 tracking-wider"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[#f5c96a] tracking-wider font-pixel"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -42,7 +42,7 @@ const ProjectShowcase = () => {
             [ MY PROJECTS ]
           </motion.h2>
           <motion.p
-            className="text-gray-700 text-lg md:text-xl max-w-3xl mx-auto"
+            className="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -65,9 +65,9 @@ const ProjectShowcase = () => {
           >
                         {/* Project Image */}
             <motion.div
-              className="relative border-4 border-blue-500 overflow-hidden group"
+              className="relative border border-[#d4a856]/40 overflow-hidden group rounded-3xl"
               style={{
-                boxShadow: '4px 4px 0px #fff, 8px 8px 0px #fff',
+                boxShadow: '0 24px 80px rgba(15, 23, 42, 0.4)',
                 imageRendering: 'pixelated'
               }}
               whileHover={{ scale: 1.02 }}
@@ -90,8 +90,8 @@ const ProjectShowcase = () => {
                     href={projects[activeProject].github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-blue-500 text-white p-3 border-2 border-blue-700 hover:bg-blue-600 transition-colors"
-                    style={{ boxShadow: '2px 2px 0px #fff' }}
+                    className="bg-[#d4a856] text-slate-950 p-3 border border-[#f5c96a] hover:bg-[#f5c96a] transition-colors rounded-full"
+                    style={{ boxShadow: '0 10px 22px rgba(212, 168, 86, 0.22)' }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -102,8 +102,8 @@ const ProjectShowcase = () => {
                     href={projects[activeProject].live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-green-500 text-white p-3 border-2 border-green-700 hover:bg-green-600 transition-colors"
-                    style={{ boxShadow: '2px 2px 0px #fff' }}
+                    className="bg-[#7dd3fc] text-slate-950 p-3 border border-[#bae6fd] hover:bg-[#bae6fd] transition-colors rounded-full"
+                    style={{ boxShadow: '0 10px 22px rgba(125, 211, 252, 0.2)' }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -121,14 +121,14 @@ const ProjectShowcase = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="flex items-center mb-4">
-                <span className="text-sm font-medium text-blue-600" style={{ textShadow: '1px 1px 0px #fff' }}>
+                <span className="text-sm font-medium text-[#7dd3fc]" style={{ textShadow: '1px 1px 0px rgba(15,23,42,0.7)' }}>
                   PROJECT {activeProject + 1}/{projects.length}
                 </span>
                 <div className="ml-auto flex gap-2">
                   <motion.button
                     onClick={prevProject}
-                    className="bg-blue-500 text-white p-2 border-2 border-blue-700 hover:bg-blue-600 transition-colors"
-                    style={{ boxShadow: '2px 2px 0px #fff' }}
+                    className="bg-[#d4a856] text-slate-950 p-2 border border-[#f5c96a] hover:bg-[#f5c96a] transition-colors rounded-full"
+                    style={{ boxShadow: '0 10px 22px rgba(212, 168, 86, 0.22)' }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -137,8 +137,8 @@ const ProjectShowcase = () => {
                   </motion.button>
                   <motion.button
                     onClick={nextProject}
-                    className="bg-blue-500 text-white p-2 border-2 border-blue-700 hover:bg-blue-600 transition-colors"
-                    style={{ boxShadow: '2px 2px 0px #fff' }}
+                    className="bg-[#7dd3fc] text-slate-950 p-2 border border-[#bae6fd] hover:bg-[#bae6fd] transition-colors rounded-full"
+                    style={{ boxShadow: '0 10px 22px rgba(125, 211, 252, 0.2)' }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -148,11 +148,11 @@ const ProjectShowcase = () => {
                 </div>
               </div>
 
-              <h3 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4" style={{ textShadow: '2px 2px 0px #fff' }}>
+              <h3 className="text-3xl md:text-4xl font-bold text-[#f5c96a] mb-4 font-pixel" style={{ textShadow: '2px 2px 0px rgba(15,23,42,0.9)' }}>
                 {projects[activeProject].title}
               </h3>
 
-              <p className="text-gray-700 text-lg mb-6 leading-relaxed" style={{ textShadow: '1px 1px 0px #fff' }}>
+              <p className="text-slate-300 text-lg mb-6 leading-relaxed" style={{ textShadow: '1px 1px 0px rgba(15,23,42,0.7)' }}>
                 {projects[activeProject].description}
               </p>
 
@@ -160,7 +160,7 @@ const ProjectShowcase = () => {
                 {projects[activeProject].tags.map((tag) => (
                   <span
                     key={tag}
-                    className="bg-blue-500 text-white text-sm font-medium px-3 py-1.5 border-2 border-blue-700"
+                    className="bg-slate-800 text-[#e5edf8] text-sm font-medium px-3 py-1.5 border border-[#d4a856]/50"
                     style={{ boxShadow: '1px 1px 0px #fff' }}
                   >
                     {tag}
@@ -173,7 +173,7 @@ const ProjectShowcase = () => {
                   href={projects[activeProject].github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-blue-500 text-white font-medium py-3 px-6 border-2 border-blue-700 hover:bg-blue-600 transition-colors"
+                  className="flex items-center gap-2 bg-[#d4a856] text-slate-950 font-medium py-3 px-6 border border-[#f5c96a] hover:bg-[#f5c96a] transition-colors rounded-full"
                   style={{ boxShadow: '3px 3px 0px #fff' }}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
@@ -185,7 +185,7 @@ const ProjectShowcase = () => {
                   href={projects[activeProject].live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-green-500 text-white font-medium py-3 px-6 border-2 border-green-700 hover:bg-green-600 transition-colors"
+                  className="flex items-center gap-2 bg-[#7dd3fc] text-slate-950 font-medium py-3 px-6 border border-[#bae6fd] hover:bg-[#bae6fd] transition-colors rounded-full"
                   style={{ boxShadow: '3px 3px 0px #fff' }}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
@@ -204,7 +204,7 @@ const ProjectShowcase = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-blue-600 mb-8 text-center" style={{ textShadow: '2px 2px 0px #fff' }}>
+          <h3 className="text-2xl md:text-3xl font-bold text-[#f5c96a] mb-8 text-center" style={{ textShadow: '2px 2px 0px rgba(15,23,42,0.9)' }}>
             [ ALL PROJECTS ]
           </h3>
 

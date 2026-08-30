@@ -1,14 +1,18 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useScroll } from "framer-motion"
-import { useTransform } from "framer-motion"
+import { motion, useScroll, useSpring, useTransform } from "framer-motion"
 
 const AboutSection = () => {
   const containerRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
+  })
+  const smoothScrollProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 28,
+    mass: 0.5,
   })
 
   const skills = [
@@ -24,58 +28,54 @@ const AboutSection = () => {
     { name: "Vercel", iconSrc: "/icons/pixel-vercel.svg" },
   ]
 
-  const headlineText = "Developer = You & Code"
+  const headlineText = "Developer. Builder. Problem Solver."
 
-  // Shortened sections
   const sections = [
     {
-      title: "I craft digital experiences",
+      title: "About Me",
       content: [
-        "Passionate developer transforming",
-        "ideas into elegant solutions.",
-        "Technical expertise meets creativity.",
+        "I’m Abinash, a developer who enjoys",
+        "turning ideas into practical, polished",
+        "web experiences that people actually use.",
       ],
     },
     {
-      title: "My Philosophy",
+      title: "What I Care About",
       content: [
-        "Great software should be beautiful",
-        "and intuitive. Every line of code",
-        "creates meaningful solutions.",
+        "Clean interfaces, smooth user journeys,",
+        "strong logic, and products that feel",
+        "fast, clear, and trustworthy.",
       ],
     },
     {
-      title: "My Mission",
+      title: "How I Work",
       content: [
-        "Build digital products that exceed",
-        "expectations and create lasting",
-        "value for users and businesses.",
+        "I combine design thinking with modern",
+        "development to build solutions that are",
+        "useful, scalable, and easy to maintain.",
       ],
     },
   ]
 
  // Opacity transforms (Starts Sooner)
-const opacity00 = useTransform(scrollYProgress, [0.00, 0.02, 0.04, 0.06], [0.3, 1, 1, 0.3]) // Start at 0%
-const opacity01 = useTransform(scrollYProgress, [0.01, 0.03, 0.05, 0.07], [0.3, 1, 1, 0.3]) // Start at 1%
-const opacity02 = useTransform(scrollYProgress, [0.02, 0.04, 0.06, 0.08], [0.3, 1, 1, 0.3]) // Start at 2%
-// The following groups are fine as they are meant to appear later in the scroll.
-const opacity10 = useTransform(scrollYProgress, [0.25, 0.29, 0.33, 0.37], [0.3, 1, 1, 0.3])
-const opacity11 = useTransform(scrollYProgress, [0.28, 0.32, 0.36, 0.40], [0.3, 1, 1, 0.3])
-const opacity12 = useTransform(scrollYProgress, [0.31, 0.35, 0.39, 0.43], [0.3, 1, 1, 0.3])
-const opacity20 = useTransform(scrollYProgress, [0.5, 0.54, 0.58, 0.62], [0.3, 1, 1, 0.3])
-const opacity21 = useTransform(scrollYProgress, [0.53, 0.57, 0.61, 0.65], [0.3, 1, 1, 0.3])
-const opacity22 = useTransform(scrollYProgress, [0.56, 0.60, 0.64, 0.68], [0.3, 1, 1, 0.3])
-// Color transforms (Starts Sooner)
-const color00 = useTransform(scrollYProgress, [0.00, 0.02, 0.04, 0.06], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"]) // Start at 0%
-const color01 = useTransform(scrollYProgress, [0.01, 0.03, 0.05, 0.07], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"]) // Start at 1%
-const color02 = useTransform(scrollYProgress, [0.02, 0.04, 0.06, 0.08], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"]) // Start at 2%
-// The following groups are fine as they are meant to appear later in the scroll.
-const color10 = useTransform(scrollYProgress, [0.3, 0.32, 0.34, 0.36], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
-const color11 = useTransform(scrollYProgress, [0.33, 0.35, 0.37, 0.39], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
-const color12 = useTransform(scrollYProgress, [0.36, 0.38, 0.40, 0.42], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
-const color20 = useTransform(scrollYProgress, [0.55, 0.57, 0.59, 0.61], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
-const color21 = useTransform(scrollYProgress, [0.58, 0.60, 0.62, 0.64], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
-const color22 = useTransform(scrollYProgress, [0.61, 0.63, 0.65, 0.67], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const opacity00 = useTransform(smoothScrollProgress, [0.00, 0.02, 0.04, 0.06], [0.3, 1, 1, 0.3])
+const opacity01 = useTransform(smoothScrollProgress, [0.01, 0.03, 0.05, 0.07], [0.3, 1, 1, 0.3])
+const opacity02 = useTransform(smoothScrollProgress, [0.02, 0.04, 0.06, 0.08], [0.3, 1, 1, 0.3])
+const opacity10 = useTransform(smoothScrollProgress, [0.25, 0.29, 0.33, 0.37], [0.3, 1, 1, 0.3])
+const opacity11 = useTransform(smoothScrollProgress, [0.28, 0.32, 0.36, 0.40], [0.3, 1, 1, 0.3])
+const opacity12 = useTransform(smoothScrollProgress, [0.31, 0.35, 0.39, 0.43], [0.3, 1, 1, 0.3])
+const opacity20 = useTransform(smoothScrollProgress, [0.5, 0.54, 0.58, 0.62], [0.3, 1, 1, 0.3])
+const opacity21 = useTransform(smoothScrollProgress, [0.53, 0.57, 0.61, 0.65], [0.3, 1, 1, 0.3])
+const opacity22 = useTransform(smoothScrollProgress, [0.56, 0.60, 0.64, 0.68], [0.3, 1, 1, 0.3])
+const color00 = useTransform(smoothScrollProgress, [0.00, 0.02, 0.04, 0.06], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color01 = useTransform(smoothScrollProgress, [0.01, 0.03, 0.05, 0.07], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color02 = useTransform(smoothScrollProgress, [0.02, 0.04, 0.06, 0.08], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color10 = useTransform(smoothScrollProgress, [0.3, 0.32, 0.34, 0.36], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color11 = useTransform(smoothScrollProgress, [0.33, 0.35, 0.37, 0.39], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color12 = useTransform(smoothScrollProgress, [0.36, 0.38, 0.40, 0.42], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color20 = useTransform(smoothScrollProgress, [0.55, 0.57, 0.59, 0.61], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color21 = useTransform(smoothScrollProgress, [0.58, 0.60, 0.62, 0.64], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
+const color22 = useTransform(smoothScrollProgress, [0.61, 0.63, 0.65, 0.67], ["#9CA3AF", "#6366F1", "#6366F1", "#9CA3AF"])
 
   const opacityTransforms = [
     [opacity00, opacity01, opacity02],
@@ -92,7 +92,7 @@ const color22 = useTransform(scrollYProgress, [0.61, 0.63, 0.65, 0.67], ["#9CA3A
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[250vh] bg-white text-gray-800 overflow-hidden py-10 px-4 sm:px-6 lg:px-8"
+      className="relative min-h-[250vh] bg-transparent text-gray-800 overflow-hidden py-10 px-4 sm:px-6 lg:px-8"
     >
       {/* Background gradient elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -101,20 +101,20 @@ const color22 = useTransform(scrollYProgress, [0.61, 0.63, 0.65, 0.67], ["#9CA3A
         <div className="absolute top-[40%] left-[20%] w-[25vw] h-[25vw] rounded-full bg-blue-500/5 blur-[80px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto pt-10 sm:pt-12 md:pt-0">
         {/* Headline */}
-        <div className="sticky top-[15vh] pt-20 pb-10 z-10">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent font-pixel">
+        <div className="sticky top-20 sm:top-24 md:top-[15vh] pt-8 sm:pt-12 md:pt-20 pb-6 md:pb-8 z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[0.9] sm:leading-[0.95] md:leading-[1] bg-gradient-to-r from-[#d4a856] via-[#7dd3fc] to-[#c4b5fd] bg-clip-text text-transparent font-pixel break-words">
             {headlineText}
           </h2>
         </div>
 
         {/* Main content sections */}
-        <div className="space-y-[12vh]">
+        <div className="space-y-10 sm:space-y-14 md:space-y-20">
           {sections.map((section, sectionIndex) => (
-            <div key={sectionIndex} className="sticky top-[30vh] h-[50vh] flex flex-col py-20">
+            <div key={sectionIndex} className="sticky top-[22vh] sm:top-[24vh] md:top-[28vh] min-h-[26vh] md:h-[38vh] flex flex-col justify-center py-6 md:py-10">
               <motion.h2
-                className="text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-pixel"
+                className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-[#f5c96a] to-[#7dd3fc] bg-clip-text text-transparent font-pixel break-words"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
@@ -133,8 +133,8 @@ const color22 = useTransform(scrollYProgress, [0.61, 0.63, 0.65, 0.67], ["#9CA3A
                   return (
                     <motion.p
                       key={lineIndex}
-                      className="text-lg sm:text-xl md:text-2xl font-medium leading-tight font-pixel"
-                      style={{ opacity, color }}
+                      className="text-base sm:text-xl md:text-2xl font-medium leading-[1.2] sm:leading-tight font-pixel break-words"
+                      style={{ opacity, color, transition: 'opacity 0.3s ease-out, color 0.3s ease-out' }}
                     >
                       {line}
                     </motion.p>
@@ -153,13 +153,13 @@ const color22 = useTransform(scrollYProgress, [0.61, 0.63, 0.65, 0.67], ["#9CA3A
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: false, margin: "-100px" }}
         >
-          <h2 className="text-2xl md:text-3xl font-bold mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-pixel">
+          <h2 className="text-2xl md:text-3xl font-bold mb-16 bg-gradient-to-r from-[#f5c96a] to-[#7dd3fc] bg-clip-text text-transparent font-pixel">
             Experience Timeline
           </h2>
 
           <div className="relative max-w-4xl mx-auto">
             {/* Timeline Line */}
-            <div className="absolute left-8 md:left-1/2 md:transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-black from-indigo-500 via-purple-500 to-blue-500 rounded-full"></div>
+            <div className="absolute left-8 md:left-1/2 md:transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#f5c96a] via-[#7dd3fc] to-[#c4b5fd] rounded-full shadow-[0_0_18px_rgba(125,211,252,0.25)]"></div>
 
             {/* Timeline Items */}
             <div className="space-y-12">
@@ -172,39 +172,35 @@ const color22 = useTransform(scrollYProgress, [0.61, 0.63, 0.65, 0.67], ["#9CA3A
                 viewport={{ once: false, margin: "-100px" }}
               >
                 {/* Timeline Node */}
-                <div className="absolute left-8 md:left-1/2 md:transform md:-translate-x-1/2 w-6 h-6 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full border-4 border-white shadow-lg z-10">
-                  <div className="absolute inset-1 bg-white rounded-full"></div>
-                  <div className="absolute inset-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
+                <div className="absolute left-8 md:left-1/2 md:transform md:-translate-x-1/2 w-6 h-6 rounded-full border-4 border-[#0b1220] shadow-[0_0_18px_rgba(212,168,86,0.3)] bg-gradient-to-r from-[#f5c96a] to-[#7dd3fc] z-10">
+                  <div className="absolute inset-1 rounded-full bg-[#0b1220]"></div>
+                  <div className="absolute inset-2 rounded-full bg-gradient-to-r from-[#f5c96a] to-[#7dd3fc]"></div>
                 </div>
 
                 {/* Content */}
                 <div className="ml-20 md:ml-0 md:w-5/12 md:pr-8 md:text-right md:mr-auto">
-                  <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl border-2 border-gray-200 shadow-lg p-6 relative">
-                    {/* Pixel decoration */}
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+                  <div className="relative rounded-2xl border border-[#d4a856]/20 bg-[#0b1220]/90 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.45)] backdrop-blur-sm">
+                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#f5c96a] via-[#7dd3fc] to-[#c4b5fd]"></div>
 
                     <div className="flex flex-col md:items-end">
-                      <span className="inline-block px-3 py-1 bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 rounded-full text-sm font-semibold font-pixel mb-3 border border-green-200">
-                         • May 2024 - Present
+                      <span className="inline-block px-3 py-1 mb-3 rounded-full border border-[#d4a856]/20 bg-[#d4a856]/10 text-[#f5c96a] text-sm font-semibold font-pixel">
+                        • May 2024 - Present
                       </span>
-                      <h3 className="text-xl font-bold text-gray-900 font-pixel mb-2">Full Stack Developer</h3>
-                      <p className="text-lg font-semibold text-indigo-600 font-pixel mb-3">@ P360</p>
-                      <p className="text-gray-700 font-pixel text-sm leading-relaxed mb-4">
+                      <h3 className="mb-2 text-xl font-bold text-[#f8fafc] font-pixel">Full Stack Developer</h3>
+                      <p className="mb-3 text-lg font-semibold text-[#7dd3fc] font-pixel">@ P360</p>
+                      <p className="mb-4 text-sm leading-relaxed text-slate-200/90 font-pixel">
                         Building scalable web applications and leading development initiatives using modern
                         technologies.
                       </p>
 
-                      {/* Key achievements */}
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 md:justify-end">
-                          <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></div>
-                          <span className="text-sm text-gray-600 font-pixel">Developed full-stack applications</span>
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#f5c96a]"></div>
+                          <span className="text-sm text-slate-200/80 font-pixel">Developed full-stack applications</span>
                         </div>
                         <div className="flex items-center gap-2 md:justify-end">
-                          <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
-                          <span className="text-sm text-gray-600 font-pixel">Implemented RESTful APIs</span>
-                        </div>
-                        <div className="flex items-center gap-2 md:justify-end">
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#7dd3fc]"></div>
+                          <span className="text-sm text-slate-200/80 font-pixel">Implemented RESTful APIs</span>
                         </div>
                       </div>
                     </div>
@@ -221,41 +217,39 @@ const color22 = useTransform(scrollYProgress, [0.61, 0.63, 0.65, 0.67], ["#9CA3A
                 viewport={{ once: false, margin: "-100px" }}
               >
                 {/* Timeline Node */}
-                <div className="absolute left-8 md:left-1/2 md:transform md:-translate-x-1/2 w-6 h-6 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full border-4 border-white shadow-lg z-10">
-                  <div className="absolute inset-1 bg-white rounded-full"></div>
-                  <div className="absolute inset-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"></div>
+                <div className="absolute left-8 md:left-1/2 md:transform md:-translate-x-1/2 w-6 h-6 rounded-full border-4 border-[#0b1220] shadow-[0_0_18px_rgba(125,211,252,0.3)] bg-gradient-to-r from-[#7dd3fc] to-[#c4b5fd] z-10">
+                  <div className="absolute inset-1 rounded-full bg-[#0b1220]"></div>
+                  <div className="absolute inset-2 rounded-full bg-gradient-to-r from-[#7dd3fc] to-[#c4b5fd]"></div>
                 </div>
 
                 {/* Content */}
                 <div className="ml-20 md:ml-0 md:w-5/12 md:pl-8 md:ml-auto">
-                  <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl border-2 border-gray-200 shadow-lg p-6 relative">
-                    {/* Pixel decoration */}
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-blue-500"></div>
+                  <div className="relative rounded-2xl border border-[#7dd3fc]/20 bg-[#0b1220]/90 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.45)] backdrop-blur-sm">
+                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#7dd3fc] via-[#c4b5fd] to-[#f5c96a]"></div>
 
                     <div className="flex flex-col">
-                      <span className="inline-block px-3 py-1 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 rounded-full text-sm font-semibold font-pixel mb-3 border border-blue-200 w-fit">
+                      <span className="inline-block px-3 py-1 mb-3 w-fit rounded-full border border-[#7dd3fc]/20 bg-[#7dd3fc]/10 text-[#7dd3fc] text-sm font-semibold font-pixel">
                         Started • February 2024 - April 2024
                       </span>
-                      <h3 className="text-xl font-bold text-gray-900 font-pixel mb-2">Joined P360</h3>
-                      <p className="text-lg font-semibold text-purple-600 font-pixel mb-3">Intern</p>
-                      <p className="text-gray-700 font-pixel text-sm leading-relaxed mb-4">
+                      <h3 className="mb-2 text-xl font-bold text-[#f8fafc] font-pixel">Joined P360</h3>
+                      <p className="mb-3 text-lg font-semibold text-[#c4b5fd] font-pixel">Intern</p>
+                      <p className="mb-4 text-sm leading-relaxed text-slate-200/90 font-pixel">
                         Began my journey as a Full Stack Developer, diving into modern web technologies and
                         collaborative development.
                       </p>
 
-                      {/* Initial focus areas */}
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
-                          <span className="text-sm text-gray-600 font-pixel">React & React Native development</span>
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#c4b5fd]"></div>
+                          <span className="text-sm text-slate-200/80 font-pixel">React & React Native development</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
-                          <span className="text-sm text-gray-600 font-pixel">Node.js backend systems</span>
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#7dd3fc]"></div>
+                          <span className="text-sm text-slate-200/80 font-pixel">Node.js backend systems</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></div>
-                          <span className="text-sm text-gray-600 font-pixel">Figma Ui and UX</span>
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#f5c96a]"></div>
+                          <span className="text-sm text-slate-200/80 font-pixel">Figma UI and UX</span>
                         </div>
                       </div>
                     </div>
@@ -290,7 +284,7 @@ const color22 = useTransform(scrollYProgress, [0.61, 0.63, 0.65, 0.67], ["#9CA3A
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: false, margin: "-100px" }}
         >
-          <h2 className="text-2xl md:text-3xl font-bold mb-12 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-pixel">
+          <h2 className="text-2xl md:text-3xl font-bold mb-12 bg-gradient-to-r from-[#f5c96a] to-[#7dd3fc] bg-clip-text text-transparent font-pixel">
             My Toolkit
           </h2>
 
